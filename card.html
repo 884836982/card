@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript">
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext('2d');
+        // context.fillStyle = "#FFF";
+        // context.fillRect(0,0,800,600);
+        var img = new Image();
+        img.src = "./card.jpg";
+        img.onload = function() {
+            var pattern = context.createPattern(img, 'no-repeat');
+            context.fillStyle = pattern;
+            context.fillRect(0, 0, 800, 600);
+            context.drawImage(img, 0, 0, 800, 600);
+            drawTree(context, 600, 400);
+            drawTree(context, 600, 450);
+            context.beginPath();
+            context.rect(665, 500, 30, 85);
+            context.fillStyle = "#805f18";
+            context.fill();
+            context.closePath();
+            drawTree(context, 600, 500);
+            context.beginPath();
+            drawPerson(context, 20, 290, 150, 300);
+            context.beginPath();
+            drawFont(context, 250, 280, "美丽的圣诞节到了，", "#fff");
+            drawFont(context, 250, 320, "我派齐天大圣送你一条超凡入圣的短信，", "#fff");
+            drawFont(context, 250, 360, "祝你生活美好日新月“圣”，", "#fff");
+            drawFont(context, 250, 400, "事业巅峰春秋鼎“圣”，", "#fff");
+            drawFont(context, 250, 440, "爱情甜蜜美不“圣”收，", "#fff");
+            context.font = "50px Verdana";
+            var gradient = context.createLinearGradient(180, 110, 600, 100);
+            gradient.addColorStop("0", "yellow");
+            gradient.addColorStop("0.5", "green");
+            gradient.addColorStop("1.0", "blue");
+            // gradient.addColorStop("1.0", "magenta");
+            context.fillStyle = gradient;
+            context.strokeStyle = "#00AAAA";
+            context.strokeText("Merry Christmas", 180, 100);
+            context.fillText("Merry Christmas", 180, 100);
+
+            // context.moveTo(500, 430);
+
+        }
+
+    }
+
+    function drawTree(cxt, x0, y0) {
+        cxt.beginPath();
+        // cxt.moveTo(x0,y0);
+        cxt.moveTo(x0, y0 + 20);
+        // cxt.lineTo(x1,y1);
+        // cxt.lineTo(x2,y2);
+        cxt.bezierCurveTo(x0 + 86, y0 - 83, x0 + 87, y0 - 83, x0 + 160, y0 + 24);
+        cxt.closePath();
+        cxt.fillStyle = "#188d21";
+        cxt.fill();
+    }
+
+    function drawFont(cxt, x0, y0, fontContent, fontColor) {
+        cxt.fillStyle = fontColor;
+        cxt.font = "20px serif";
+        cxt.fillText(fontContent, x0, y0);
+
+    }
+
+    function drawPerson(cxt, x0, y0, width, height) {
+        cxt.beginPath();
+        var img = new Image();
+        img.src = "./person1.jpg";
+        img.onload = function() {
+            cxt.fillStyle = cxt.createPattern(img, 'no-repeat');
+            cxt.fillRect(x0, y0, width, height);
+            cxt.drawImage(img, x0, y0, width, height);
+            cxt.closePath();
+        }
+
+    }
+
+    function drawMoon(cxt, x0, y0) {
+        cxt.save();
+        cxt.beginPath();
+        // cxt.arc(550,100,100,Math.PI * 3/2,Math.PI /2);
+        cxt.bezierCurveTo(x0 - 174 + 185, y0 - 126 + 117, x0 - 174 + 230, y0 - 126 + 179, 550, 200);
+        // cxt.closePath();
+        // cxt.restore();
+        cxt.strokeStyle = "#e4d62d"
+        cxt.stroke();
+        // cxt.save();
+        // cxt.beginPath();
+        // cxt.moveTo(x0,y0);
+        // cxt.bezierCurveTo(x0-174+182, y0-126+153, x0-174+188, y0-126+178, x0-174+138, y0-126+216);
+        // cxt.closePath();        
+        // cxt.stroke();
+    }
+</script>
+
+</html>
